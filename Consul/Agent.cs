@@ -263,6 +263,12 @@ namespace Consul
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool TLSSkipVerify { get; set; }
+        
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string GRPC { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public bool GRPCUseTLS  { get; set; }
 
         /// <summary>
         /// In Consul 0.7 and later, checks that are associated with a service
@@ -504,7 +510,7 @@ namespace Consul
         /// <summary>
         /// ForceLeave is used to have the agent eject a failed node
         /// </summary>
-        /// <param name="node">The node name to remove. An attempt to eject a node that doesn't exist will still be successful</param>
+        /// <param name="node">The node name to remove</param>
         /// <returns>An empty write result</returns>
         public Task<WriteResult> ForceLeave(string node, CancellationToken ct = default(CancellationToken))
         {
